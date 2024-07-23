@@ -45,3 +45,12 @@ Group the orders by date and calculate the average number of pizzas ordered per 
 from orders join order_details
 on orders.order_id = order_details.order_id
 group by orders.order_date) AS order_quantity;
+
+List the top 5 most ordered pizza types along with their quantities?
+  SELECT pizza_types.name,
+SUM(order_details.quantity) AS quantity
+FROM pizza_types join pizzas
+ON pizza_types.pizza_type_id = pizzas.pizza_type_id
+join order_details
+On order_details.pizza_id = pizzas.pizza_id
+GROUP BY pizza_types.name order by quantity DESC limit 5;
